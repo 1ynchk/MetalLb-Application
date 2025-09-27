@@ -1,0 +1,19 @@
+{{- $servicename := printf "%s-nginx" .Release.Name -}}
+{{- if not (lookup "v1" "Service" .Values.namespace $servicename) }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-ingress
+  namespace: {{ .Values.namespace }}
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: {{ .Release.Name }}-nginx
+            port:
+              number: 80
+{{- end }}

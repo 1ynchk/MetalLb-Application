@@ -1,0 +1,18 @@
+
+
+# common
+namespace: metallb-application
+
+labels:
+  app: nginx
+
+# Deployment
+replicas: 3
+
+images: 
+  nginx: nginx:latest
+
+ports:
+  nginx: 
+    containerPort: 80
+    servicePort: 80
