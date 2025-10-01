@@ -1,0 +1,14 @@
+{{- $ipaddresspools := printf "%s-ip-pool" .Release.Name }}
+{{- if and
+  (lookup "v1" "Namespace" "" "metallb-system")
+  (lookup "metallb.io/v1beta1" "IPAddressPool" "metallb-system" $ipaddresspools ) 
+}}
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata: 
+  name: {{ .Release.Name }}-l2advertisement
+  namespace: metallb-system
+spec:
+  ipAddressPools: 
+  - {{ .Release.Name }}-ip-pool
+{{- end }}

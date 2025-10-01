@@ -1,7 +1,8 @@
-
+# chart-setting
+metallbIpPool: 192.168.220.41/32
 
 # common
-namespace: metallb-application
+namespace: test-namespace
 
 labels:
   app: nginx
